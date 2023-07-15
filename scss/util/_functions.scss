@@ -12,6 +12,6 @@
     @return accessible-unit($px) + rem;
 }
 
-@function em() {
+@function em($px) {
     @return accessible-unit($px) + em;
 }

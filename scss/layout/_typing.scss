@@ -1,0 +1,14 @@
+@use "../util" as u;
+
+.typing {
+    &__word-field {
+        display: flex;
+        flex-wrap: wrap;
+        gap: u.em(8) u.em(10);
+        max-width: u.em(1000);
+        border: u.em(2) solid black;
+        padding: u.em(20);
+        border-radius: 5px;
+        margin-inline: auto;
+    }
+}

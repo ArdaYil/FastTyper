@@ -1,5 +1,7 @@
-
+@use "../util/" as u;
 
 .word {
-    
+    font-size: u.rem(28);
+    font-weight: 600;
+    letter-spacing: 1px;
 }
