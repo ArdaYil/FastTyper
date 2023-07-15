@@ -7,8 +7,10 @@ interface WordStore {
   wrongWords: number;
   startTime: number;
   allWords: string[];
+  currentWord: string;
   currentWords: string[];
   resetStore: (words: string[]) => void;
+  setCurrentWord: (word: string) => void;
   next: () => string[];
 }
 
@@ -21,8 +23,12 @@ const useWordStore = create<WordStore>((set, get) => ({
   startTime: 0,
   allWords: [],
   currentWords: [],
+  currentWord: "",
+  setCurrentWord: (word: string) =>
+    set((store) => ({ ...store, currentWord: word })),
   resetStore: (words: string[]) =>
-    set(() => ({
+    set((store) => ({
+      ...store,
       allWords: words,
       rightWords: 0,
       wrongWords: 0,

@@ -1,14 +1,26 @@
 @use "../util" as u;
 
 .typing {
+    margin-inline: auto;
+    width: fit-content; 
+
     &__word-field {
         display: flex;
         flex-wrap: wrap;
         gap: u.em(8) u.em(10);
         max-width: u.em(1000);
-        border: u.em(2) solid black;
+        border: u.em(2) solid #aaa;
         padding: u.em(20);
-        border-radius: 5px;
+        border-radius: u.em(5);
+        margin-bottom: u.em(20);
+    }
+
+    &__type-field {
+        width: 50%;
         margin-inline: auto;
+        padding: u.em(7);
+        font-size: u.rem(18);
+        border-radius: u.em(5);
+        border: u.em(2) solid #aaa;
     }
 }

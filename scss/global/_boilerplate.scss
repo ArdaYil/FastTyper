@@ -9,3 +9,11 @@ body {
     margin: 0;
     padding: 0;
 }
+
+a, img, input {
+    display: inline-block,
+}
+
+input {
+    outline: none;
+}
