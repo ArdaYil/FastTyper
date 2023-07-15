@@ -19,7 +19,7 @@ class APIClient<T> {
 
   public getAll() {
     return axiosInstance
-      .get<T>(this.endpoint)
+      .get<T[]>(this.endpoint)
       .then(({ data, headers }) => ({ data, headers }));
   }
 }
