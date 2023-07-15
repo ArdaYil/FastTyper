@@ -1,8 +1,8 @@
 import { useStore } from "zustand";
-import NameField from "../components/typing/NameField";
 import useWords from "../hooks/useWords";
 import useWordStore from "../stores/WordStore";
 import { useEffect } from "react";
+import WordField from "../components/typing/WordField";
 
 const Homepage = () => {
   const resetStore = useStore(useWordStore, (store) => store.resetStore);
@@ -16,7 +16,7 @@ const Homepage = () => {
 
   return (
     <>
-      <NameField words={data} />
+      <WordField words={data} />
     </>
   );
 };

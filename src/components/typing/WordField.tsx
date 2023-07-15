@@ -6,7 +6,7 @@ interface Props {
   words: string[];
 }
 
-const NameField = ({ words }: Props) => {
+const WordField = ({ words }: Props) => {
   const currentWords = useStore(useWordStore, (store) => store.currentWords);
 
   return (
@@ -18,4 +18,4 @@ const NameField = ({ words }: Props) => {
   );
 };
 
-export default NameField;
+export default WordField;

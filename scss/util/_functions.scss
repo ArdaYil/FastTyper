@@ -1,0 +1,17 @@
+@use "sass:math";
+
+@function accessible-unit($px) {
+    @if (is-unitless($px)) {
+        @return math.div($px, 16);
+    }
+
+    @error("First positional argument cannot have a unit");
+}
+
+@function rem($px) {
+    @return accessible-unit($px) + rem;
+}
+
+@function em() {
+    @return accessible-unit($px) + em;
+}
