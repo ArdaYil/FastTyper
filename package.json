@@ -18,7 +18,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.14.1",
-    "word-list": "^3.1.0"
+    "word-list": "^3.1.0",
+    "zustand": "^4.3.9"
   },
   "devDependencies": {
     "@types/config": "^3.3.0",
