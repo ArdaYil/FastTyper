@@ -9,6 +9,7 @@ interface WordStore {
   allWords: string[];
   currentWord: string;
   currentWords: string[];
+  getWordToType: () => string;
   resetStore: (words: string[]) => void;
   setCurrentWord: (word: string) => void;
   next: () => string[];
@@ -24,6 +25,13 @@ const useWordStore = create<WordStore>((set, get) => ({
   allWords: [],
   currentWords: [],
   currentWord: "",
+  getWordToType: () => {
+    const state = get();
+    const rightWords = state.rightWords;
+    const wrongWords = state.wrongWords;
+
+    return state.currentWords[rightWords + wrongWords];
+  },
   setCurrentWord: (word: string) =>
     set((store) => ({ ...store, currentWord: word })),
   resetStore: (words: string[]) =>

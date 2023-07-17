@@ -1,7 +1,22 @@
 @use "../util/" as u;
 
-.word {
+%word {
     font-size: u.rem(28);
     font-weight: 600;
     letter-spacing: 1px;
+    color: black;
+}
+
+.word {
+    @extend %word;
+
+    &--wrong {
+        @extend %word;
+
+        color: red;
+    }
+
+    &__right {
+        color: rgb(22, 159, 22);
+    }
 }
