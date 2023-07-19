@@ -5,6 +5,7 @@ const useWords = () =>
   useQuery({
     queryKey: ["words"],
     queryFn: () => wordService.getAll(),
+    refetchOnWindowFocus: false,
   });
 
 export default useWords;

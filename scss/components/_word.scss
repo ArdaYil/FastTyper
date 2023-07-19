@@ -13,10 +13,16 @@
     &--wrong {
         @extend %word;
 
-        color: red;
+        color: #ff0000;
+    }
+
+    &--right {
+        @extend %word;
+
+        color: #169f16;
     }
 
     &__right {
-        color: rgb(22, 159, 22);
+        color: #169f16;
     }
 }
