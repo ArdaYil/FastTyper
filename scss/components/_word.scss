@@ -1,10 +1,16 @@
 @use "../util/" as u;
 
+$currentWordPaddingInline: 7;
+$currentWordPaddingBlock: 5;
+
 %word {
     font-size: u.rem(32);
     font-weight: 600;
     letter-spacing: 1px;
     color: black;
+    background-color: #fff;
+    padding: u.em($currentWordPaddingBlock) u.em($currentWordPaddingInline);
+    border-radius: u.em(5);
 }
 
 .word {
@@ -25,4 +31,10 @@
     &__right {
         color: #169f16;
     }
+}
+
+.current {
+    background-color: #eee;
+    padding: u.em($currentWordPaddingBlock) u.em($currentWordPaddingInline);
+    border-radius: u.em(5);
 }

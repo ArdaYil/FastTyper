@@ -24,8 +24,10 @@ const Word = ({ word, state }: Props) => {
     return "";
   };
 
+  const currentClass = word === wordToType ? " current" : "";
+
   if (word != wordToType)
-    return <p className={`word${getClassName()}`}>{word}</p>;
+    return <p className={`word${getClassName()}${currentClass}`}>{word}</p>;
 
   const getMatchingWords = () => {
     if (currentWord === "") return -1;
@@ -46,19 +48,19 @@ const Word = ({ word, state }: Props) => {
 
     if (!matchingWords)
       return (
-        <p id={word} className="word--wrong">
+        <p id={word} className={`word--wrong${currentClass}`}>
           {word}
         </p>
       );
     if (matchingWords === -1)
       return (
-        <p id={word} className="word">
+        <p id={word} className={`word${currentClass}`}>
           {word}
         </p>
       );
 
     return (
-      <p className="word" id={word}>
+      <p className={`word${currentClass}`} id={word}>
         <span className="word__right">{letters.splice(0, matchingWords)}</span>
         {letters}
       </p>
