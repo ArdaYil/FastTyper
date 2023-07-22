@@ -3,25 +3,25 @@ import { create } from "zustand";
 const wordsAtOnce = 20;
 
 interface WordStore {
-  rightWords: number[];
-  wrongWords: number[];
+  rightWords: string[];
+  wrongWords: string[];
   startTime: number;
   allWords: string[];
   currentWord: string;
   currentWords: string[];
   getWordToType: () => string;
-  appendRightWords: (word: number) => void;
-  appendWrongWords: (word: number) => void;
+  appendRightWords: (word: string) => void;
+  appendWrongWords: (word: string) => void;
   resetRightWords: () => void;
   resetWrongWords: () => void;
   resetStore: (words: string[]) => void;
   setCurrentWord: (word: string) => void;
-  next: () => string[];
+  next: () => void;
   getCurrentWordIndex: () => number;
 }
 
 const getWords = (words: string[], totalWords: number) =>
-  words.filter((_, i) => i >= totalWords && i < totalWords + wordsAtOnce);
+  words.filter((_, i) => i >= totalWords);
 
 const useWordStore = create<WordStore>((set, get) => ({
   rightWords: [],
@@ -35,7 +35,7 @@ const useWordStore = create<WordStore>((set, get) => ({
     const rightWords = state.rightWords.length;
     const wrongWords = state.wrongWords.length;
 
-    return state.currentWords[rightWords + wrongWords];
+    return state.allWords[rightWords + wrongWords];
   },
   setCurrentWord: (word: string) =>
     set((store) => ({ ...store, currentWord: word })),
@@ -46,13 +46,19 @@ const useWordStore = create<WordStore>((set, get) => ({
       rightWords: [],
       wrongWords: [],
       startTime: new Date().getTime(),
-      currentWords: getWords(words, 0),
+      currentWords: [...words],
     })),
   next: () =>
-    getWords(get().allWords, get().rightWords.length + get().wrongWords.length),
-  appendRightWords: (word: number) =>
+    set((store) => ({
+      ...store,
+      currentWords: getWords(
+        get().allWords,
+        get().rightWords.length + get().wrongWords.length
+      ),
+    })),
+  appendRightWords: (word: string) =>
     set((store) => ({ ...store, rightWords: [...get().rightWords, word] })),
-  appendWrongWords: (word: number) =>
+  appendWrongWords: (word: string) =>
     set((store) => ({ ...store, wrongWords: [...get().wrongWords, word] })),
   resetRightWords: () => set((store) => ({ ...store, rightWords: [] })),
   resetWrongWords: () => set((store) => ({ ...store, wrongWords: [] })),

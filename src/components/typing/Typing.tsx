@@ -11,6 +11,8 @@ const Typing = () => {
 
   const data = result?.data || [];
 
+  console.log(data);
+
   useEffect(() => {
     resetStore(data);
   });

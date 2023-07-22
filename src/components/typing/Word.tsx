@@ -44,11 +44,21 @@ const Word = ({ word, state }: Props) => {
   const getWordJSX = () => {
     const matchingWords = getMatchingWords();
 
-    if (!matchingWords) return <p className="word--wrong">{word}</p>;
-    if (matchingWords === -1) return <p className="word">{word}</p>;
+    if (!matchingWords)
+      return (
+        <p id={word} className="word--wrong">
+          {word}
+        </p>
+      );
+    if (matchingWords === -1)
+      return (
+        <p id={word} className="word">
+          {word}
+        </p>
+      );
 
     return (
-      <p className="word">
+      <p className="word" id={word}>
         <span className="word__right">{letters.splice(0, matchingWords)}</span>
         {letters}
       </p>

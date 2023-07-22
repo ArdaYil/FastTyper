@@ -25,19 +25,56 @@ const TypeField = () => {
     (store) => store.getCurrentWordIndex
   );
 
+  const isLastWord = () => {
+    const words = document.querySelectorAll(".word");
+
+    let lastTop: number | undefined;
+
+    try {
+      words.forEach((word, index) => {
+        if (index + 1 === words.length) throw "true";
+
+        const theWord = word.textContent;
+        const wordToType = getWordToType();
+
+        if (theWord === wordToType) {
+          lastTop = word.getBoundingClientRect().top;
+
+          return;
+        }
+
+        if (
+          lastTop !== undefined &&
+          word.getBoundingClientRect().top !== lastTop
+        ) {
+          throw "true";
+        } else throw "false";
+      });
+    } catch (ex) {
+      if (ex === "true") return true;
+
+      return false;
+    }
+
+    return false;
+  };
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.match(" ")) {
       const word = e.target.value.trim();
       const wordToType = getWordToType().trim();
-      console.log(word, wordToType, word === wordToType);
+      const endOfLine = isLastWord();
+
       if (word !== wordToType) {
-        appendWrongWords(getCurrentWordIndex());
+        appendWrongWords(wordToType);
       } else {
-        appendRightWords(getCurrentWordIndex());
+        appendRightWords(wordToType);
       }
 
       setCurrentWord("");
-      next();
+
+      if (endOfLine) next();
+
       return;
     }
 

@@ -7,17 +7,19 @@ const WordField = () => {
   const rightWords = useStore(useWordStore, (store) => store.rightWords);
   const wrongWords = useStore(useWordStore, (store) => store.wrongWords);
 
-  const getState = (index: number) => {
-    if (rightWords.find((i) => i === index) != undefined) return "RIGHT";
-    if (wrongWords.find((i) => i === index) != undefined) return "WRONG";
+  const getState = (word: string) => {
+    word = word.replace("\r", "");
+
+    if (rightWords.find((i) => i === word)) return "RIGHT";
+    if (wrongWords.find((i) => i === word)) return "WRONG";
 
     return "NEUTRAL";
   };
 
   return (
     <div className="typing__word-field">
-      {currentWords.map((word, index) => (
-        <Word state={getState(index)} key={word} word={word} />
+      {currentWords.map((word) => (
+        <Word state={getState(word)} key={word} word={word} />
       ))}
     </div>
   );
