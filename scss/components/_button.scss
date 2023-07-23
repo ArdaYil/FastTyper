@@ -1,0 +1,15 @@
+@use "../util" as u;
+
+.btn {
+    outline: none;
+    border-width: 0;
+    padding: u.em(10) u.em(20);
+    border-radius: u.em(20);
+    cursor: pointer;
+}
+
+.reset-btn {
+    width: u.em(80);
+    height: u.em(80);
+    padding: u.em(20);
+}

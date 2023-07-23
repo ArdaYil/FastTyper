@@ -21,10 +21,18 @@
 
     &__type-field {
         width: 50%;
-        margin-inline: auto;
         padding: u.em(7);
-        font-size: u.rem(18);
+        font-size: u.rem(24);
+        font-weight: 600;
+        letter-spacing: u.em(1.1);
         border-radius: u.em(5);
         border: u.em(2) solid #aaa;
+    }
+
+    &__controls {
+        display: flex;
+        justify-content: center;
+        gap: u.em(20);
+        align-items: center;
     }
 }

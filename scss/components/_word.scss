@@ -19,17 +19,17 @@ $currentWordPaddingBlock: 5;
     &--wrong {
         @extend %word;
 
-        color: #ff0000;
+        color: var(--clr-wrong);
     }
 
     &--right {
         @extend %word;
 
-        color: #169f16;
+        color: var(--clr-right);
     }
 
     &__right {
-        color: #169f16;
+        color: var(--clr-right);
     }
 }
 

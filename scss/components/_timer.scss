@@ -1,0 +1,12 @@
+@use "../util" as u;
+
+.timer {
+    padding: u.em(10) u.em(20);
+    font-size: u.rem(20);
+    font-weight: 600;
+    background-color: #eee;
+    text-align: center;
+    height: fit-content;
+    border-radius: u.em(10);
+    cursor: pointer;
+}
