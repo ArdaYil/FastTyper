@@ -18,12 +18,11 @@ const Timer = ({ time, active, onTimerFinsh }: Props) => {
     if (!active) return;
 
     const id = window.setInterval(() => {
-      console.log("here");
       decrementTime();
     }, ms("1s"));
 
     return () => window.clearInterval(id);
-  }, [active]);
+  }, [active, currentTime]);
 
   const minutesAndSeconds = (seconds: number) => {
     let min = Math.floor(seconds / 60);

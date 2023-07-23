@@ -4,6 +4,8 @@ import { ChangeEvent } from "react";
 
 const TypeField = () => {
   const currentWord = useStore(useWordStore, (store) => store.currentWord);
+  const isWriting = useStore(useWordStore, (store) => store.isWriting);
+  const startSession = useStore(useWordStore, (store) => store.startSession);
   const getWordToType = useStore(useWordStore, (store) => store.getWordToType);
   const next = useStore(useWordStore, (store) => store.next);
   const appendRightWords = useStore(
@@ -60,6 +62,8 @@ const TypeField = () => {
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (isWriting === false) startSession();
+
     if (e.target.value.match(" ")) {
       const word = e.target.value.trim();
       const wordToType = getWordToType().trim();

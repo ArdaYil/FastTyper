@@ -9,6 +9,7 @@ import ResetButton from "../common/ResetButton";
 
 const Typing = () => {
   const resetStore = useStore(useWordStore, (store) => store.resetStore);
+  const isWriting = useStore(useWordStore, (store) => store.isWriting);
   const { data: result } = useWords();
 
   const data = result?.data || [];
@@ -25,7 +26,7 @@ const Typing = () => {
       <div className="typing__controls">
         <TypeField />
         <ResetButton onReset={handleReset} />
-        <Timer active={false} time={60} onTimerFinsh={() => {}} />
+        <Timer active={isWriting} time={60} onTimerFinsh={() => {}} />
       </div>
     </div>
   );

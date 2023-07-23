@@ -1,7 +1,5 @@
 import { create } from "zustand";
 
-const wordsAtOnce = 20;
-
 interface WordStore {
   rightWords: string[];
   wrongWords: string[];
@@ -9,6 +7,7 @@ interface WordStore {
   allWords: string[];
   currentWord: string;
   currentWords: string[];
+  isWriting: boolean;
   getWordToType: () => string;
   appendRightWords: (word: string) => void;
   appendWrongWords: (word: string) => void;
@@ -18,6 +17,8 @@ interface WordStore {
   setCurrentWord: (word: string) => void;
   next: () => void;
   getCurrentWordIndex: () => number;
+  startSession: () => void;
+  endSession: () => void;
 }
 
 const getWords = (words: string[], totalWords: number) =>
@@ -30,6 +31,7 @@ const useWordStore = create<WordStore>((set, get) => ({
   allWords: [],
   currentWords: [],
   currentWord: "",
+  isWriting: false,
   getWordToType: () => {
     const state = get();
     const rightWords = state.rightWords.length;
@@ -63,6 +65,8 @@ const useWordStore = create<WordStore>((set, get) => ({
   resetRightWords: () => set((store) => ({ ...store, rightWords: [] })),
   resetWrongWords: () => set((store) => ({ ...store, wrongWords: [] })),
   getCurrentWordIndex: () => get().rightWords.length + get().wrongWords.length,
+  startSession: () => set((store) => ({ ...store, isWriting: true })),
+  endSession: () => set((store) => ({ ...store, isWriting: false })),
 }));
 
 export default useWordStore;
