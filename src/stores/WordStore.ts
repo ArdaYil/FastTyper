@@ -1,3 +1,4 @@
+import { debug } from "console";
 import { create } from "zustand";
 
 interface WordStore {
@@ -8,6 +9,7 @@ interface WordStore {
   currentWord: string;
   currentWords: string[];
   isWriting: boolean;
+  typingFinished: boolean;
   getWordToType: () => string;
   appendRightWords: (word: string) => void;
   appendWrongWords: (word: string) => void;
@@ -19,6 +21,7 @@ interface WordStore {
   getCurrentWordIndex: () => number;
   startSession: () => void;
   endSession: () => void;
+  finishTyping: () => void;
 }
 
 const getWords = (words: string[], totalWords: number) =>
@@ -32,6 +35,7 @@ const useWordStore = create<WordStore>((set, get) => ({
   currentWords: [],
   currentWord: "",
   isWriting: false,
+  typingFinished: false,
   getWordToType: () => {
     const state = get();
     const rightWords = state.rightWords.length;
@@ -48,6 +52,8 @@ const useWordStore = create<WordStore>((set, get) => ({
       rightWords: [],
       wrongWords: [],
       startTime: new Date().getTime(),
+      typingFinished: false,
+      isWriting: false,
       currentWords: [...words],
     })),
   next: () =>
@@ -67,6 +73,7 @@ const useWordStore = create<WordStore>((set, get) => ({
   getCurrentWordIndex: () => get().rightWords.length + get().wrongWords.length,
   startSession: () => set((store) => ({ ...store, isWriting: true })),
   endSession: () => set((store) => ({ ...store, isWriting: false })),
+  finishTyping: () => set((store) => ({ ...store, typingFinished: true })),
 }));
 
 export default useWordStore;

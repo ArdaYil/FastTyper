@@ -22,11 +22,6 @@ const TypeField = () => {
     (store) => store.setCurrentWord
   );
 
-  const getCurrentWordIndex = useStore(
-    useWordStore,
-    (store) => store.getCurrentWordIndex
-  );
-
   const isLastWord = () => {
     const words = document.querySelectorAll(".word");
 
@@ -62,7 +57,10 @@ const TypeField = () => {
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (isWriting === false) startSession();
+    if (isWriting === false) {
+      console.log("here");
+      startSession();
+    }
 
     if (e.target.value.match(" ")) {
       const word = e.target.value.trim();

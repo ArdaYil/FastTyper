@@ -6,9 +6,11 @@ import useWordStore from "../../stores/WordStore";
 import TypeField from "./TypeField";
 import Timer from "../common/Timer";
 import ResetButton from "../common/ResetButton";
+import TypingResult from "./TypingResult";
 
 const Typing = () => {
   const resetStore = useStore(useWordStore, (store) => store.resetStore);
+  const finishTyping = useStore(useWordStore, (store) => store.finishTyping);
   const isWriting = useStore(useWordStore, (store) => store.isWriting);
   const { data: result } = useWords();
 
@@ -16,7 +18,7 @@ const Typing = () => {
 
   useEffect(() => {
     resetStore(data);
-  });
+  }, [data]);
 
   const handleReset = () => {};
 
@@ -26,7 +28,8 @@ const Typing = () => {
       <div className="typing__controls">
         <TypeField />
         <ResetButton onReset={handleReset} />
-        <Timer active={isWriting} time={60} onTimerFinsh={() => {}} />
+        <Timer active={isWriting} time={60} onTimerFinsh={finishTyping} />
+        <TypingResult />
       </div>
     </div>
   );
